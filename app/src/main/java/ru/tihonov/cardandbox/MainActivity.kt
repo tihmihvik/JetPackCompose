@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -44,62 +47,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(
+            LazyRow(
                 modifier = Modifier
-                    .verticalScroll(rememberScrollState())
+                    .fillMaxWidth()
+                    .background(color = Color.Gray)
             ) {
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-                ListItem("Miha", "Akter")
-            }
-        }
-    }
-}
-
-@Composable
-private fun ListItem(name: String, prof: String){
-    var countr = remember {
-        mutableStateOf(0)
-    }
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-            .clickable {
-                countr.value++
-            },
-        shape = RoundedCornerShape(15.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp),
-        border = BorderStroke(1.dp, Color.Black)
-    ) {
-        Box {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    contentDescription = "Картинка",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .size(64.dp)
-                        .clip(CircleShape)
-                )
-                Column(
-                    modifier = Modifier.padding(start = 16.dp)
-                ) {
-                    Text(text = countr.value.toString())
-                    Text(text = prof)
+                itemsIndexed(
+                    listOf(
+                        ItemRowModel(R.drawable.img1, "Misha"),
+                        ItemRowModel(R.drawable.img2, "Misha"),
+                        ItemRowModel(R.drawable.img3, "Misha"),
+                        ItemRowModel(R.drawable.img4, "Misha"),
+                        ItemRowModel(R.drawable.img5, "Misha"),
+                        ItemRowModel(R.drawable.img6, "Misha")
+                    )
+                ) { _, item ->
+                    MyRow(item = item)
                 }
             }
         }
     }
 }
+
