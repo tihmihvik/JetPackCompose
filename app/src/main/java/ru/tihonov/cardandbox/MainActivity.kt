@@ -49,17 +49,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            fun gop() {
+            fun gop(link: String) {
                 intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://www.google.ru/")
+                    Uri.parse(link)
                 )
                 startActivity(intent)
             }
 
 
             @Composable
-            fun listItem(name: String, prof: String){
+            fun listItem(name: String, details: String, link: String){
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -86,8 +86,8 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(start = 16.dp)
                             ) {
                                 Text(text = name)
-                                Text(text = prof)
-                                Button(onClick = {gop()}) {
+                                Text(text = details)
+                                Button(onClick = {gop(link)}) {
                                     Text(text = "Перейти")
                                 }
                             }
@@ -99,16 +99,25 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
-                listItem("Miha", "Akter")
+                listItem("Miha",
+                    "Akter",
+                    "https://us02web.zoom.us/j/8355482224?pwd=cTFIMmZNM056TStpTXE5SlRlNTBjdz09#success")
+                listItem("Miha",
+                    "Akter",
+                    "https://www.youtube.com/@user-zk7gy7qk7g/videos")
+                listItem("Miha",
+                    "Akter",
+                    "https://www.youtube.com/@user-zk7gy7qk7g/videos")
+                listItem("Miha",
+                    "Akter",
+                    "https://www.youtube.com/@user-zk7gy7qk7g/videos")
+                listItem("Miha",
+                    "Akter",
+                    "https://www.youtube.com/@user-zk7gy7qk7g/videos")
+                listItem("Miha",
+                    "Akter",
+                    "https://www.youtube.com/@user-zk7gy7qk7g/videos")
+
             }
 
         }
